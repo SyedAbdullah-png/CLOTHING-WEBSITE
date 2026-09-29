@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VELORA | Premium Clothing</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f8f7f3;
+            color: #161616;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 75px;
+            background: #101111;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            letter-spacing: 8px;
+        }
+
+        .logo span {
+            display: block;
+            font-family: "Inter", sans-serif;
+            font-size: 8px;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-top: -3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #a8b79d;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 20px;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 650px;
+            background:
+                linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.1)),
+                url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=85");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 9%;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .small-title {
+            color: #bdcbb4;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(55px, 7vw, 95px);
+            line-height: .95;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            margin-bottom: 35px;
+            color: #eee;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 28px;
+            background: #82947a;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #111;
+        }
+
+        /* CATEGORIES */
+        .section {
+            padding: 80px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading small {
+            letter-spacing: 3px;
+            color: #708066;
+            font-size: 11px;
+        }
+
+        .section-heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 45px;
+            margin-top: 8px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 25px;
+        }
+
+        .category {
+            text-align: center;
+        }
+
+        .category-img {
+            width: 145px;
+            height: 145px;
+            margin: auto;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #e5e3dc;
+        }
+
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .4s;
+        }
+
+        .category:hover img {
+            transform: scale(1.08);
+        }
+
+        .category h3 {
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-top: 18px;
+        }
+
+        .category a {
+            display: inline-block;
+            color: #555;
+            font-size: 12px;
+            margin-top: 8px;
+            text-decoration: none;
+        }
+
+        /* PRODUCTS */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product {
+            position: relative;
+        }
+
+        .product-image {
+            height: 390px;
+            overflow: hidden;
+            background: #e8e7e1;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .product:hover img {
+            transform: scale(1.05);
+        }
+
+        .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #65745f;
+            color: white;
+            padding: 6px 10px;
+            font-size: 10px;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 15px 3px;
+        }
+
+        .product-info h3 {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .price {
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .stars {
+            color: #b38c4a;
+            margin-top: 7px;
+            font-size: 13px;
+        }
+
+        /* BANNERS */
+        .banners {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            padding: 0 2%;
+        }
+
+        .banner {
+            min-height: 300px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 45px;
+            color: white;
+        }
+
+        .banner.one {
+            background-image:
+                linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.1)),
+                url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=80");
+        }
+
+        .banner.two {
+            background-image:
+                linear-gradient(90deg, rgba(0,0,0,.2), rgba(0,0,0,.65)),
+                url("https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?auto=format&fit=crop&w=1000&q=80");
+        }
+
+        .banner h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 40px;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .banner p {
+            margin-bottom: 20px;
+        }
+
+        /* ABOUT */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img {
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text small {
+            color: #71836b;
+            letter-spacing: 3px;
+        }
+
+        .about-text h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 48px;
+            margin: 15px 0;
+        }
+
+        .about-text p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        /* NEWSLETTER */
+        .newsletter {
+            background: #1a1b1b;
+            color: white;
+            text-align: center;
+            padding: 75px 20px;
+        }
+
+        .newsletter h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+            color: #bbb;
+            margin-bottom: 25px;
+        }
+
+        .newsletter form {
+            max-width: 500px;
+            margin: auto;
+            display: flex;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            outline: none;
+        }
+
+        .newsletter button {
+            padding: 16px 25px;
+            border: none;
+            background: #82947a;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #101111;
+            color: white;
+            padding: 60px 7% 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            margin-bottom: 20px;
+        }
+
+        footer p,
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+            line-height: 2;
+            font-size: 13px;
+        }
+
+        footer a {
+            display: block;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding-top: 20px;
+            color: #777;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .hero {
+                min-height: 550px;
+                padding: 0 7%;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .section {
+                padding: 55px 5%;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 450px;
+            }
+
+            .banners {
+                grid-template-columns: 1fr;
+            }
+
+            .about-text h2 {
+                font-size: 38px;
+            }
+
+            .newsletter form {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .copyright {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        VELORA
+        <span>WEAR YOUR STORY</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-icons">
+        ♡
+        🛒
+    </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            NEW SEASON COLLECTION
+        </div>
+
+        <h1>
+            Style That<br>
+            Defines You
+        </h1>
+
+        <p>
+            Premium quality. Modern designs.
+            Everyday comfort.
+        </p>
+
+        <a href="#shop" class="btn">
+            SHOP NOW →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+
+    <div class="section-heading">
+        <small>SHOP BY CATEGORY</small>
+        <h2>Explore Collection</h2>
+    </div>
+
+    <div class="categories">
+
+        <div class="category">
+            <div class="category-img">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=80">
+            </div>
+            <h3>HOODIES</h3>
+            <a href="#">Shop Now →</a>
+        </div>
+
+        <div class="category">
+            <div class="category-img">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80">
+            </div>
+            <h3>T-SHIRTS</h3>
+            <a href="#">Shop Now →</a>
+        </div>
+
+        <div class="category">
+            <div class="category-img">
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=500&q=80">
+            </div>
+            <h3>JACKETS</h3>
+            <a href="#">Shop Now →</a>
+        </div>
+
+        <div class="category">
+            <div class="category-img">
+                <img src="https://images.unsplash.com/photo-1506629905607-d9f2d8c4a7f3?auto=format&fit=crop&w=500&q=80">
+            </div>
+            <h3>PANTS</h3>
+            <a href="#">Shop Now →</a>
+        </div>
+
+        <div class="category">
+            <div class="category-img">
+                <img src="https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=500&q=80">
+            </div>
+            <h3>ACCESSORIES</h3>
+            <a href="#">Shop Now →</a>
+        </div>
+
+        <div class="category">
+            <div class="category-img">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80">
+            </div>
+            <h3>FOOTWEAR</h3>
+            <a href="#">Shop Now →</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+<section class="section" id="shop">
+
+    <div class="section-heading">
+        <small>FEATURED COLLECTION</small>
+        <h2>Best Sellers</h2>
+    </div>
+
+    <div class="products">
+
+        <div class="product">
+            <span class="tag">NEW</span>
+
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85">
+            </div>
+
+            <div class="product-info">
+                <h3>Essential Hoodie</h3>
+                <div class="price">Rs. 3,499</div>
+                <div class="stars">★★★★★</div>
+            </div>
+        </div>
+
+
+        <div class="product">
+            <span class="tag">BESTSELLER</span>
+
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85">
+            </div>
+
+            <div class="product-info">
+                <h3>Classic T-Shirt</h3>
+                <div class="price">Rs. 1,999</div>
+                <div class="stars">★★★★★</div>
+            </div>
+        </div>
+
+
+        <div class="product">
+            <span class="tag">TRENDING</span>
+
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=85">
+            </div>
+
+            <div class="product-info">
+                <h3>Varsity Jacket</h3>
+                <div class="price">Rs. 5,499</div>
+                <div class="stars">★★★★★</div>
+            </div>
+        </div>
+
+
+        <div class="product">
+            <span class="tag">NEW</span>
+
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85">
+            </div>
+
+            <div class="product-info">
+                <h3>Streetwear Pants</h3>
+                <div class="price">Rs. 3,999</div>
+                <div class="stars">★★★★★</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROMO BANNERS -->
+<section class="banners">
+
+    <div class="banner one">
+        <div>
+            <h2>Premium<br>Quality Fabric</h2>
+            <p>Soft. Durable. Made For You.</p>
+            <a href="#" class="btn">EXPLORE MORE →</a>
+        </div>
+    </div>
+
+    <div class="banner two">
+        <div>
+            <h2>Streetwear<br>Collection</h2>
+            <p>Comfort Meets Style</p>
+            <a href="#" class="btn">SHOP NOW →</a>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="section" id="about">
+
+    <div class="about">
+
+        <div class="about-img">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85">
+        </div>
+
+        <div class="about-text">
+
+            <small>ABOUT VELORA</small>
+
+            <h2>
+                More Than Just Clothing
+            </h2>
+
+            <p>
+                At Velora, we believe fashion is more than
+                what you wear. It is a way to express yourself,
+                your confidence and your individuality.
+            </p>
+
+            <p>
+                Our collections combine modern design,
+                premium materials and everyday comfort.
+            </p>
+
+            <a href="#" class="btn">
+                OUR STORY →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="contact">
+
+    <h2>Stay Connected</h2>
+
+    <p>
+        Subscribe for new collections, exclusive offers
+        and the latest drops.
+    </p>
+
+    <form>
+        <input
+            type="email"
+            placeholder="Enter your email address"
+        >
+
+        <button type="submit">
+            SUBSCRIBE
+        </button>
+    </form>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+            <div class="logo">
+                VELORA
+                <span>WEAR YOUR STORY</span>
+            </div>
+
+            <p style="margin-top:20px;">
+                Premium clothing designed for people
+                who want to wear their story.
+            </p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="#categories">Collection</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div>
+            <h3>Customer Service</h3>
+            <a href="#">FAQ</a>
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+            <a href="#">Size Guide</a>
+            <a href="#">Track Order</a>
+        </div>
+
+        <div>
+            <h3>Follow Us</h3>
+            <p>Instagram</p>
+            <p>Facebook</p>
+            <p>TikTok</p>
+            <p>YouTube</p>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        <span>© 2026 Velora. All Rights Reserved.</span>
+        <span>Privacy Policy | Terms & Conditions</span>
+    </div>
+
+</footer>
+
+</body>
+</html>
